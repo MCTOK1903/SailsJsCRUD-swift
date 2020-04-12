@@ -9,23 +9,6 @@ module.exports = {
         }
         
     },
-
-    create: function(req,res){
-        const title = req.body.title
-        const postBody = req.body.postBody
-        
-        Post.create({title:title,body:postBody}).exec(function(err) {
-            if(err){
-                return res.serverError(err.toString())
-            }
-            console.log("succes")
-            return res.end()
-        })
-
-        res.end()
-    },
-
-
     findById: function(req,res) {
         const postId = req.param("postId")
 
@@ -37,11 +20,4 @@ module.exports = {
             res.send("not found by id" + postId)
         }
     },
-    
-    delete : async function(req,res){
-        const postId = req.param("postId")
-       
-        await Post.destroy({id:postId})
-        res.send("deleted success")
-    }
 }
